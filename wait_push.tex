@@ -1,0 +1,17 @@
+\section{WAIT x PUSH}
+
+Waiting time between the push and the build is computed by taking the difference between last commit in the push's time and the first build starttime. The first commit in the build's time is not in the data I retrieved from mercurial since only the last commit time is given. 
+
+To be able to show a significant plot, we wanted to have a logarithmic scale. We thus had to add 1min to every delay to be able to do so. The median were computed without that additional minute.
+
+We can see that on each branch, two tendencies alternate : the first one at 1min, the second one at 61min. I wonder if their might be a difference on the time encoding during the 61min tendency, regarding the timezone. First transition was end 22nd of June 2015 (r39.6 to r39.7), second was 26th of October 2015 (r42.5 to r42.6), the third was 20nd of June 2016 (r48.2 to r48.3) and the last the 24th of October 206 (r50.5 to r50.6).
+
+\kyle{Do you know if there might be a difference in the timezone that brought that difference in the tendencies ? Or do you think there is an other reason for that alternation ?}
+
+There is still a lot of out-layers higher than the median.
+
+
+
+
+
+\fourFigBranch{h}{wait_push}{}

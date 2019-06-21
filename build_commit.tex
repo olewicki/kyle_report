@@ -1,0 +1,28 @@
+\section{BUILD x COMMIT}
+
+To compute the number of builds by commit, we took the number of builds by push computed in section~\ref{build_push_sec} and the number of commits by push computed in section~\ref{commit_push_sec}. By dividing the number of builds with the number of commits for each push, we could have the new results.
+
+
+\threeTypesBranch{h}{build_commit}
+{
+    Number of builds by commit on each branch. (a) The median is at 23 builds and is quite stable across time. (b) The median is at 213 builds and is quite stable across time.  (c) The median has two stable states and goes from the first one to the other at release 44. The median is at 0.5, then goes up to 34 from release 44. (d) The median grows exponentially, starting at 102 during release 36 and going up to 725 during release 50.
+}
+{
+    In this section we show the results for all the pushes, disregarding the availability of the push in the mercurial dataset. 
+}
+{
+    Number of builds by commit on a log scale on each branch for pushes that were found on mercurial. (a) The median is at 23 builds and is quite stable across time. (b) The median is at 214 builds and is quite stable across time.  (c) The median is at 33. (d) The median grows exponentially, starting at 102 during release 36 and going up to 917 during release 50.
+}
+{
+    We only show the results for the pushes that were retrieved in the mercurial dataset.
+    
+    Try and mozilla-central branches have a quite low median number of builds by commit, respectively 23 and 33. The mozilla-inbound has a quite high median number, at 214. Finally, the mozilla-release has a really high median number, with peaks and ouliers much lower at ends of releases. This is due to the upward peaks in section~\ref{commit_push_sec}.
+    
+    \kyle{Why mozilla-central as such a low number of builds by commit, compated to mozilla-inbound and mozilla-release ?}
+}
+{
+    Number of builds by commit on each branch for pushes that were not found on mercurial. (a) The median is at 3 builds and is quite stable across time. (b) The median is at 27 builds and is quite stable across time.  (c) The median has two stable states and goes from the first one to the other at release 44. The median is at 0.5, then goes up to 81 from release 44. (d) The median grows exponentially, starting at 36 during release 36 and going up to 114 during release 50.
+}
+{
+    The results here are computed by taking the number of commits by push given by the build dataset.
+}

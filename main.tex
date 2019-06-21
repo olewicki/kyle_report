@@ -1,0 +1,97 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{fullpage}
+
+\usepackage{hyperref}
+\usepackage{subfig}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\let\MYorigsubfloat\subfloat
+\renewcommand{\subfloat}[2][\relax]{\MYorigsubfloat[]{#2}}
+
+\newcommand{\sizeBranches}{.49\textwidth}
+\newcommand{\figPosition}{h!}
+
+\newcommand{\fourFigBranch}[3]{
+    \begin{figure*}[#1]
+    \subfloat[]{\includegraphics[width=\sizeBranches]{img/#2_try.pdf}}
+    \hfill
+    \subfloat[]{\includegraphics[clip, width=\sizeBranches]{img/#2_mozilla_inbound.pdf}}
+    \hfill
+    \subfloat[]{\includegraphics[clip, width=\sizeBranches]{img/#2_mozilla_central.pdf}}
+    \hfill
+    \subfloat[]{\includegraphics[clip, width=\sizeBranches]{img/#2_mozilla_release.pdf}}\\
+    \caption{\label{#2} #3}
+    \end{figure*}
+    \newpage
+}
+
+\newcommand{\threeTypesBranch}[8]{
+\ifx \hideAll \undefined
+    \ifx \hideTitle \undefined
+        \subsection{All pushes}
+    \fi
+    #4
+    \fourFigBranch{#1}{#2}{#3}
+\fi
+
+
+\ifx \hideMercurial \undefined
+    \ifx \hideTitle \undefined
+        \subsection{Pushes found on mercurial}
+    \fi
+    #6
+    \fourFigBranch{#1}{#2_MERCURIAL}{#5}
+\fi
+
+
+\ifx \hideCount \undefined
+    \ifx \hideTitle \undefined
+        \subsection{Pushes NOT found on mercurial}
+    \fi
+    #8
+    \fourFigBranch{#1}{#2_COUNT}{#7}
+\fi
+}
+
+\def\hideAll{ok}
+%\def\hideMercurial{ok}
+\def\hideCount{ok}
+\def\hideTitle{ok}
+
+\newcounter{QCount}
+\newcommand{\kyle}[1]{\textcolor{red}{{\it [Kyle Q\arabic{QCount}\stepcounter{QCount}: #1]}}}
+
+\title{Mozilla's data analysis - intermediate results}
+\author{Doriane Olewicki }
+\date{May 2019}
+
+\begin{document}
+
+\maketitle
+
+
+\tableofcontents
+
+\newpage
+
+
+\input{KYLE.tex}
+%\input{intro.tex}
+\input{overview.tex}
+\input{build_push.tex}
+\input{commit_push.tex}
+\input{build_commit.tex}
+\input{price_commit.tex}
+\input{wait_push.tex}
+\input{type_result.tex}
+\input{type_platform.tex}
+\input{platform_result.tex}
+\input{platform_fail.tex}
+\input{reason.tex}
+\input{hour.tex}
+\input{dayweek.tex}
+\input{build_rw.tex}
+% \input{cumulative_build.tex}
+% \input{showpoints.tex}
+\end{document}

@@ -1,0 +1,29 @@
+\section{BUILD x PUSH}
+\label{build_push_sec}
+
+For this first section we just gathered the number of builds by push, identified by a different \texttt{revision\_12C} by push. 
+
+\threeTypesBranch{h}{build_push}
+{
+    Number of builds by commit on each branch. (a) The median is at 52 builds and is quite stable across time. (b) The median is at 305 builds and is quite stable across time.  (c) The median has two stable states and goes from the first one to the other at release 44. The median is at 5, then goes up to 1109 from release 44. (d) The median grows exponentially, starting at 306 during release 36 and going up to 920 during release 50.
+}
+{
+    Looking at all the pushes, disregarding if we found it on the mercurial or not, we can see that the "try" and "mozilla-inbound" branches are quite stable, having a slight increase over time. On the "mozilla-central" branch, the behaviour changes over time, the mean increasing a lot. The "mozilla-release" branch shows an exponential increase overtime.
+}
+{  
+    Number of builds by commit on a log scale on each branch for pushes that were found on mercurial. (a) The median is at 52 builds and is quite stable across time. (b) The median is at 305 builds and is quite stable across time.  (c) The median has two stable states and goes from the first one to the other at release 44. The median is at 669, then goes up to 1234 from release 44. (d) The median grows exponentially, starting at 306 during release 36 and going up to 920 during release 50.
+}
+{
+    %Same behaviour as before for the "try", "mozilla-inbound" and "mozilla-release" branches. The "mozilla-central" branch's behaviour changes a lot regarding the privious graph.
+    We can see that the "try" and "mozilla-inbound" branches are quite stable, having a slight increase over time. On the "mozilla-central" branch, the behaviour changes over time, the median increasing a lot. The "mozilla-release" branch shows an exponential increase overtime.
+    
+    \kyle{We believe the increase over time is due to more and more tests being added to the builds sets. Is that the right explanation for you too ?} 
+    
+    \kyle{What happened around release 44 on the mozilla-central branch ? The number of builds by push increasing slows down.}
+}
+{
+    Number of builds by commit on each branch for pushes that were not found on mercurial. (a) The median is at 1 build with some peaks overtime. Some weeks have no push missing on mercurial. (b) The median is at 1 build with some peaks overtime. Some weeks have no push missing on mercurial. (c) The median has two stable states and goes from the first one to the other at release 44. The median is at 5, then, no pushes are missed on mercurial from release 44. Some out-layers appear overtime. (d) All pushes were found on this branch but for the last release, having a peak at 923 builds.
+}
+{
+    This shows that among the pushes not found on mercurial, most of them have a really low number of builds. This shows also that the large variations in Fig~\ref{build_push}(c) over releases 36 to 43 come from the the unfounded pushes.
+}

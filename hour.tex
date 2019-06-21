@@ -1,0 +1,15 @@
+\section{Number of pushes/builds BY HOUR OF THE DAY}
+
+More pushes and builds during the night for the try and mozilla-inbound branches then during the day. 
+
+Regarding the mozilla-central and mozilla-release branches, the number of pushes is stable over the hours of the day, but for midnight where there is a down-peak. The number of builds goes down during the morning and there is a peak in both branches at 1 pm.
+
+\kyle{Could you explain these behaviors?}
+
+\begin{figure*}[h]
+    \subfloat[]{\includegraphics[width=\sizeBranches]{img/push_hour.pdf}}
+    \hfill
+    \subfloat[]{\includegraphics[clip, width=\sizeBranches]{img/build_hour.pdf}}\\
+    \caption{\label{hour} Number of (1) pushes and (2) builds by hour of the day on each of the branches of interest.}
+\end{figure*}
+

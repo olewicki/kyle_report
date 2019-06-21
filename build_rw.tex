@@ -1,0 +1,46 @@
+\section{Analysis of the scheduled compilations}
+
+In this section, we looked closer to compilation builds that were scheduled. The point of that is to identified the scheduler pattern regarding those builds. In the first subsection, all compilation builds are considered as similar. In the second one and third one, the builds are separated, regarding their specificities (type of compilation, platform...).
+
+
+
+
+\subsection{NUMBER OF BUILDS BY WEEK, disregarding the specificities of the builds}
+
+
+\kyle{Why does it decrease like that ? Why is there such a difference from one week to another?}
+
+\fourFigBranch{h}{build_rw}{Number of scheduled builds (compilations) by week. Global reduction of the number of compilation by week on all branches.
+(a) Drops from 6600 at r36 to 3800 during r50.
+(b) Stable at 3000 until r46 where it decreases linearly until reaching 2100 during r50.
+(c) Drops from 400 at r36 to 260 during r50.
+(d) Between 0  and 50 overtime.}
+
+
+
+
+
+
+\subsection{NUMBER OF BUILDS BY WEEK, separating builds by specificities}
+
+\kyle{Here, we separated each buildername and printed a line for each of them. Some do stop earlier (i.e. there are more lines on Fig~\ref{build_rw_SEP}(a) before r44). How come ? On the Fig~\ref{cumul_build_rw_SEP}, it will be even more visible. And why are there down- and up-peaks ?}
+
+\kyle{why no pgo on the mozilla-release branch ?}
+
+\fourFigBranch{h}{build_rw_SEP}{Number of scheduled builds (compilations) by buildername by week. 
+}
+
+
+
+
+
+\subsection{CUMULATIVE NUMBER OF BUILDS BY WEEK, separating builds by specificities}
+
+\kyle{Here, we separated each buildername again, but applied a cumulative sum on the number of builds by week, so that the time at which buildernames are stopping or starting appear more clearly. Fig~\ref{cumul_build_rw_SEP}(a) shows multiple builds stopping before release 44 and Fig~\ref{cumul_build_rw_SEP}(d) shows builds starting after release 48. Why?}
+
+\fourFigBranch{h}{cumul_build_rw_SEP}{Cumulative number of scheduled builds (compilations) by buildername by week. 
+}
+
+
+
+

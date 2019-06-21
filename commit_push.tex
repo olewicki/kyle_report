@@ -1,0 +1,25 @@
+\section{COMMIT x PUSH}
+\label{commit_push_sec}
+\threeTypesBranch{h}{commit_push}
+{
+    Number of commits by push on each branch. (a) The median is at 1 commit. (b) The median is at 1 commit. (c) The median has two stable states and goes from the first one to the other at release 44. The median is at 18, then goes up to 22 from release 44 and varies a lot more. (d) The median is at 2 across time but as peaks at ends of releases.
+}
+{
+    For each push in the build data, we computed the number of commits in the push by counting the changesets in mercurial for the corresponding push. If the push is not retrieved in the mercurial dataset, we took the number of changesets already given by the build dataset.
+}
+{
+    Number of commits by push on a log scale on each branch for pushes that were found on mercurial. (a) The median is at 1 commit. (b) The median is at 1 commit. (c) The median is at 23. The number of commits varies a lot more. (d) The median is at 2 across time but as peaks at ends of releases that goes up to 10~000 commits.
+}
+{
+   For each push in the build data, we computed the number of commits in the push by counting the changesets in mercurial for the corresponding push. We only displayed the counts for the pushes retrieved in the mercurial dataset (see Section~\ref{KYLE}).
+   
+   The median number of commits by push is at 1 for the try and mozilla-inbound branch. The median is higher for the mozilla-central branch where commits are gathered. Then, the mozilla-release branch shows peaks or large outliers around the end of releases.
+   
+   \kyle{Median at 1 for the try branch and the mozilla-inbound branch, does it seem right ?}
+}
+{
+    Number of commits by push on each branch for pushes that were not found on mercurial. (a) The median is at 19 commits. (b) The median is at 8 commits. (c) The median is at 10 commits. (d) The median is at 8 commits.
+}
+{
+    In this last subsection, we showed the number of commits by push for all the pushes in the build data if we took the count given by that dataset. The results have different behaviors.
+}
