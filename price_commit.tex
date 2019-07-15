@@ -32,11 +32,11 @@ Regarding the energy cost, using Polytechnique Montréal's data, the machines co
 
 $$\textit{Energy cost = } 1~[kWh] / 4 \cdot 0.1326~[USD/kWh] = 0.03315~[USD]$$
 
-The mid developer's salary in the US is 118k USD \footnote{\href{https://www.lemagit.fr/actualites/450412783/Selon-Hired-les-salaires-des-developpeurs-en-Europe-restent-tres-inferieurs-aux-salaires-US}{https://www.lemagit.fr/actualites/450412783/Selon-Hired-les-salaires-des-developpeurs-en-Europe-restent-tres-inferieurs-aux-salaires-US}, consulted the 07/15/2019.}. We estimate that a developer is responsible of 100 machines. The computation of the salary by hour is computed by dividing by 365 (number of days by year) and by 24 (number of hours by day).
+The mid sysadmin's salary in the US is 82.5k USD \footnote{\href{https://www.indeed.com/salaries/Systems-Administrator-Salaries}{https://www.indeed.com/salaries/Systems-Administrator-Salaries}, consulted the 07/15/2019.}. We estimate that a developer is responsible of 100 machines. Since a employee should work about 8 hours a day, we had to multiply that salary by 3 to account the three employees. The computation of the salary by hour is computed by dividing by 365 (number of days by year) and by 24 (number of hours by day).
 
-$$ \textit{Salary cost = }118k~[USD] / 100 / 365 / 24 = 0.1347~[USD] $$ 
+$$ \textit{Salary cost = }82.5k~[USD] \cdot 3 / 100 / 365 / 24 = 0.2825~[USD] $$ 
 
-The total cost by hour is thus estimated at USD~0.198.
+The total cost by hour is thus estimated at USD~0.346. This will be globally more expensive than the Linux platform since the price by hour of tests, which represent most of the builds, is about one third of this price.
 
 \subsection{Results}
 
@@ -63,7 +63,7 @@ The total cost by hour is thus estimated at USD~0.198.
 %}
 
 \fourFigBranch{h}{price_commit_MERCURIAL}{
-Price by commit on each branch for pushes that were found on mercurial. (a) The median grows overtime, starting at 1.4~USD during release 36 and going up to 2~USD during release 50. (b) The median is at 17~USD and is slightly increasing across time.  (c) The median grows exponentially, starting at 1.5~USD during release 36 and going up to 3.5~USD during release 50. (d) The median grows exponentially, starting at 25~USD during release 36 and going up to 56~USD during release 50.
+Price by commit on each branch for pushes that were found on mercurial. (a) The median is at 2.6~USD and is slightly increasing across time.  (b) The median is at 23~USD and is slightly increasing across time.  (c) The median grows exponentially, starting at 2.3~USD during release 36 and going up to 4.6~USD during release 50. (d) The median grows exponentially, starting at 27~USD during release 36 and going up to 105~USD during release 50.
 %[1] "try"              "1.90926142759117"
 %[1] "mozilla-inbound"  "16.8500618841536"
 %[1] "mozilla-central"  "2.49681245034413"
