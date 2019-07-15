@@ -2,17 +2,9 @@
 
 \subsection{Hypothesis for the cost computation}
 
-In this analysis, we wanted to estimate the cost of a commit regarding the builds generated. To do so, we made some assumptions that will be explained in this section.
+In this analysis, we wanted to estimate the cost of a commit regarding the builds generated. To do so, we made some assumptions that are explained in this section.
 
 The Linux platform builds are run on Amazon AWS, for which the tarification is available. The other platforms, Windows and MacOS, are run in house, so the cost is computed differently, see below.
-
-The cost of the Linux platform comes from the Amazon AWS tarification. We selected the On Demand prices which is estimated at USD~0.45 per hour for compilation builds and USD~0.12 per hour for testing builds. This numbers come from a blog article from 2013 that used those to estimate the same costs.
-
-Regarding the MacOS and Windows platforms, we want to evaluate the cost by evaluating the cost of having physical machines, maintaining them and the energy consumed. We want to estimate that cost using data we have from the IT department at Polytechnique Montréal. We do not have the data yet but we are in communication with the department about it. 
-
-\kyle{However, if you have any of that information about Mozilla, it would be really helpful for more accurate cost evaluations.} 
-
-At the moment, since the only data we have is about the AWS tarification, we computed the cost with those numbers, disregarding the platform used.
 
 To compute the cost of each commit, the formula used is the following :
 
@@ -20,29 +12,64 @@ $$\frac{\sum_{p\in Platforms} (C_{1p}\sum_{c \in build_{cp}} T_{c} + C_{2p}\sum_
 
 Where $C_{1j}$ is the cost of the compilation builds for the $j$ platform associated with the commit, $C_{2j}$ is the cost of the testing builds for the $j$ platform associated with the commit, $build_{i j}$ are all the builds of the build $i$ type for the $j$ platform associated to the commit and $T_i$ in the time of the build $i$.
 
+\subsection{Linux platform cost}
+
+The cost of the Linux platform comes from the Amazon AWS tarification. We selected the On Demand prices which is estimated at USD~0.45 per hour for compilation builds and USD~0.12 per hour for testing builds. This numbers come from a blog article from 2013 that used those to estimate the same costs.
+
+\subsection{MacOS and Windows platforms cost}
+
+Regarding the MacOS and Windows platforms, we want to evaluate the cost by evaluating the cost of having physical machines, maintaining them and the energy consumed. We want to estimate that cost using data we have from the IT department at Polytechnique Montréal as well as data available online. 
+
+\kyle{However, if you have any of that information about Mozilla, it would be really helpful for more accurate cost evaluations.} 
+
+The cost of those platforms is composed of three cost : the machine cost, the energy cost and the developer's salary cost. 
+
+The machine cost is estimated at CAD 1530 without taxes, cost of the machines at Polytechnique Montréal. Knowing that the taxes in Canada are around 15\% and the exchange rate is 0.76, the cost of a machine is $1530 \cdot 1.15 \cdot 0.76=1337.22$ USD. The machines are estimated to be changed every five years. To compute the by hour cost,  we have to divide the cost by five for the five years of use, by 365 for the days by year and by 24 for the hours of the day. 
+
+$$\textit{Machine cost = } 1337.22~[USD] / 5 / 365 / 24 = 0.0305~[USD]$$
+
+Regarding the energy cost, using Polytechnique Montréal's data, the machines consume 1kWh in 4 hours. From online data \footnote{\url{https://www.chooseenergy.com/electricity-rates-by-state/}, consulted the 07/11/2019.}, the mid cost of energy in the US is 13.26cents by kWh.
+
+$$\textit{Energy cost = } 1~[kWh] / 4 \cdot 0.1326~[USD/kWh] = 0.03315~[USD]$$
+
+The mid developer's salary in the US is 118k USD \footnote{\href{https://www.lemagit.fr/actualites/450412783/Selon-Hired-les-salaires-des-developpeurs-en-Europe-restent-tres-inferieurs-aux-salaires-US}{https://www.lemagit.fr/actualites/450412783/Selon-Hired-les-salaires-des-developpeurs-en-Europe-restent-tres-inferieurs-aux-salaires-US}, consulted the 07/15/2019.}. We estimate that a developer is responsible of 100 machines. The computation of the salary by hour is computed by dividing by 365 (number of days by year) and by 24 (number of hours by day).
+
+$$ \textit{Salary cost = }118k~[USD] / 100 / 365 / 24 = 0.1347~[USD] $$ 
+
+The total cost by hour is thus estimated at USD~0.198.
+
+\subsection{Results}
+
+%\threeTypesBranch{h}{price_commit}
+%{
+%    Price by commit on each branch. (a) The median is at 24~USD and is quite stable across time. (b) The median is at 212~USD and is quite stable across time.  (c) The median has two stable states and goes from the first one to the other at release 44. The median is at 0.8~USD, then goes up to 35~USD from release 44. (d) The median grows exponentially, starting at 104~USD during release 36 and going up to 693~USD during release 50.
+%}
+%{
+%    
+%}
+%{
+%    Price by commit on each branch for pushes that were found on mercurial. (a) The median is at 1.5~USD and is quite stable across time. (b) The median is at 15~USD and is slightly increasing across time.  (c) The median is at 2~USD. (d) The median grows exponentially, starting at 12~USD during release 36 and going up to 60~USD during release 50.
+%}
+%{
+%    \kyle{Here we can see results with more flexible assumption, supposing that all builds' platforms would have costs similar to the AWS tarification. What do you think about that ?}
+%    
+%    The cost increases slightly on all the branches, most visibly is on the mozilla-release branch. Each commit costs about 2~USD on the try and mozilla-central branches. The mozilla-inbound branch has 15~USD commits and the mozilla-release branch has even more expensive commits.
+%}
+%{
+%    Price by commit on each branch for pushes that were not found on mercurial. (a) The median is at 24~USD and is quite stable across time. (b) The median is at 212~USD and is quite stable across time.  (c) The median has two stable states and goes from the first one to the other at release 44. The median is at 0.8~USD, then goes up to 35~USD from release 44. (d) The median grows exponentially, starting at 104~USD during release 36 and going up to 693~USD during release 50.
+%}
+%{
+%    
+%}
+
+\fourFigBranch{h}{price_commit_MERCURIAL}{
+Price by commit on each branch for pushes that were found on mercurial. (a) The median grows overtime, starting at 1.4~USD during release 36 and going up to 2~USD during release 50. (b) The median is at 17~USD and is slightly increasing across time.  (c) The median grows exponentially, starting at 1.5~USD during release 36 and going up to 3.5~USD during release 50. (d) The median grows exponentially, starting at 25~USD during release 36 and going up to 56~USD during release 50.
+%[1] "try"              "1.90926142759117"
+%[1] "mozilla-inbound"  "16.8500618841536"
+%[1] "mozilla-central"  "2.49681245034413"
+%[1] "mozilla-release"  "27.9942335697263"
+}
 
 
-
-\threeTypesBranch{h}{price_commit}
-{
-    Price by commit on each branch. (a) The median is at 24~USD and is quite stable across time. (b) The median is at 212~USD and is quite stable across time.  (c) The median has two stable states and goes from the first one to the other at release 44. The median is at 0.8~USD, then goes up to 35~USD from release 44. (d) The median grows exponentially, starting at 104~USD during release 36 and going up to 693~USD during release 50.
-}
-{
-    
-}
-{
-    Price by commit on each branch for pushes that were found on mercurial. (a) The median is at 1.5~USD and is quite stable across time. (b) The median is at 15~USD and is slightly increasing across time.  (c) The median is at 2~USD. (d) The median grows exponentially, starting at 12~USD during release 36 and going up to 60~USD during release 50.
-}
-{
-    \kyle{Here we can see results with more flexible assumption, supposing that all builds' platforms would have costs similar to the AWS tarification. What do you think about that ?}
-    
-    The cost increases slightly on all the branches, most visibly is on the mozilla-release branch. Each commit costs about 2~USD on the try and mozilla-central branches. The mozilla-inbound branch has 15~USD commits and the mozilla-release branch has even more expensive commits.
-}
-{
-    Price by commit on each branch for pushes that were not found on mercurial. (a) The median is at 24~USD and is quite stable across time. (b) The median is at 212~USD and is quite stable across time.  (c) The median has two stable states and goes from the first one to the other at release 44. The median is at 0.8~USD, then goes up to 35~USD from release 44. (d) The median grows exponentially, starting at 104~USD during release 36 and going up to 693~USD during release 50.
-}
-{
-    
-}
 \textcolor{white}{empty}
 \newpage
